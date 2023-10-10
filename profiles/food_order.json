@@ -1,0 +1,6 @@
+{
+	"Order Date" : ["Sept 5", "Sept 25", "Sept 20", "Sept 30", "Sept 1", "June 20", "Jull 21", "June 10"],
+	"Food Item" : ["Biryani", "Noodles", "Momo", "Pizza", "French Fries", "Pasta"],
+	"Order From" : ["Zomato", "Swiggy", "Offline"],
+	"Payment Method" : ["UPI", "Credit Card", "Cash"]
+}
