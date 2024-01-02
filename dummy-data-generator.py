@@ -6,6 +6,7 @@ import csv
 import random
 import json
 import argparse
+import uuid
 
 class DataGenerator(object):
     file_name = ''
@@ -32,8 +33,13 @@ class DataGenerator(object):
             json_data = self.read_source(self.file_name)
             return_dict = {}
             for key, val in json_data.items():
-                if type(val) == int or type(val) == str:
+                if type(val) == int:
                     return_dict[key] = val
+                elif type(val) == str:
+                    if val.lower() == 'uuid':
+                        return_dict[key] = str(uuid.uuid4())
+                    else:
+                        return_dict[key] = val
                 elif type(val) == list and len(val) > 0:
                     if len(val) == 2 and type(val[0]) == int:
                         return_dict[key] = random.randint(val[0], val[1])
