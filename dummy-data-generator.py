@@ -9,19 +9,19 @@ import argparse
 import uuid
 
 class DataGenerator(object):
-    file_name = ''
+    source_name = ''
     data_count = None
     outfile_name = ''
 
-    def __init__(self, file_name, data_count):
-        self.file_name = file_name
+    def __init__(self, source_name, data_count):
+        self.source_name = source_name
         self.data_count = data_count
         self.outfile_name = f'dummy_data_{data_count}_row.csv'
 
     # Read json file
-    def read_source(self, file_name: str) -> dict:
+    def read_source(self, source_name: str) -> dict:
         try:
-            with open(file_name, 'r') as source:
+            with open(source_name, 'r') as source:
                 source_data = json.load(source)
             return source_data
         except Exception as e:
@@ -30,7 +30,7 @@ class DataGenerator(object):
     # Function to generate random data
     def generate_random_data(self) -> dict:
         try:
-            json_data = self.read_source(self.file_name)
+            json_data = self.read_source(self.source_name)
             return_dict = {}
             for key, val in json_data.items():
                 if type(val) == int:
@@ -55,7 +55,7 @@ class DataGenerator(object):
     def write_csv(self) -> None:
         try:
             with open(self.outfile_name, 'w', newline='') as csvfile:
-                fieldnames = list(self.read_source(self.file_name).keys())
+                fieldnames = list(self.read_source(self.source_name).keys())
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writeheader()
 
